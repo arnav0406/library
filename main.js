@@ -12,14 +12,20 @@ const content = document.querySelector(".content");
 
 const myLibrary = [];
 
-function Book(tit,auth,pag,stat) 
+class Book{
+
+    constructor(tit,auth,pag,stat) 
 {
     this.title=tit;
     this.author=auth;
     this.pages=pag;
     this.status=stat;
+    this.id = crypto.randomUUID();
 }
-
+    toggleStatus() {
+    this.status = this.status === "read" ? "unread" : "read";
+    }
+}
 btn.addEventListener("click",()=>{
     form.style.display='block';
     backdrop.style.display='block';
@@ -86,9 +92,5 @@ function createBookCard(book) {
   card.append(t, a, p, s, btnContainer);
 
   return card;
-}
-
-Book.prototype.toggleStatus = function () {
-  this.status = this.status === "read" ? "unread" : "read";
 }
 
